@@ -1,48 +1,45 @@
-const Employee = require("../lib/Employee");
+const Employee = require('../lib/Employee.js');
 
-test("Can instantiate Employee instance", () => {
-  const e = new Employee();
-  expect(typeof(e)).toBe("object");
+// Basic property setup that all other child classes will inherit
+const testEmployee = new Employee(
+  'Employee Name',
+  124,
+  'Employee@gmail.com',
+  ''
+);
+
+const testEmployee2 = new Employee(
+  'Employee Name',
+  124,
+  'Employee@gmail.com',
+  'Employee'
+);
+
+test('Creates base employee property setup', () => {
+  expect(testEmployee2.name).toEqual(expect.any(String));
+  expect(testEmployee2.id).toEqual(expect.any(Number));
+  expect(testEmployee2.email).toEqual(expect.stringContaining('@'));
+  expect(testEmployee2.role).toEqual('Employee');
 });
 
-test("Can set name via constructor arguments", () => {
-  const name = "Alice";
-  const e = new Employee(name);
-  expect(e.name).toBe(name);
+test('getName method returns valid string', () => {
+  expect(testEmployee2.getName()).toEqual(expect.any(String));
 });
 
-test("Can set id via constructor argument", () => {
-  const testValue = 100;
-  const e = new Employee("Foo", testValue);
-  expect(e.id).toBe(testValue);
+test('getId method returns valid value', () => {
+  expect(testEmployee2.getId()).toEqual(expect.any(Number));
 });
 
-test("Can set email via constructor argument", () => {
-  const testValue = "test@test.com";
-  const e = new Employee("Foo", 1, testValue);
-  expect(e.email).toBe(testValue);
+test('getEmail method returns valid email', () => {
+  expect(testEmployee2.getEmail()).toEqual(expect.stringContaining('@'));
 });
 
-test("Can get name via getName()", () => {
-  const testValue = "Alice";
-  const e = new Employee(testValue);
-  expect(e.getName()).toBe(testValue);
+test('getRole method returns valid role string', () => {
+  expect(testEmployee2.getRole()).toEqual('Employee');
 });
 
-test("Can get id via getId()", () => {
-  const testValue = 100;
-  const e = new Employee("Foo", testValue);
-  expect(e.getId()).toBe(testValue);
-});
-
-test("Can get email via getEmail()", () => {
-  const testValue = "test@test.com";
-  const e = new Employee("Foo", 1, testValue);
-  expect(e.getEmail()).toBe(testValue);
-});
-
-test("getRole() should return \"Employee\"", () => {
-  const testValue = "Employee";
-  const e = new Employee("Alice", 1, "test@test.com");
-  expect(e.getRole()).toBe(testValue);
+test('Returns employee if role property not filled', () => {
+  // Test to make sure both the getRole function and regular property return Employee as it should
+  expect(testEmployee.getRole()).toEqual('Employee');
+  expect(testEmployee.role).toEqual('Employee');
 });

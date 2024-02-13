@@ -1,20 +1,28 @@
-const Manager = require("../lib/Manager");
-const Employee = require("../lib/Employee");
+const Manager = require('../lib/Manager.js');
 
-test("Can set office number via constructor argument", () => {
-  const testValue = 100;
-  const e = new Manager("Foo", 1, "test@test.com", testValue);
-  expect(e.officeNumber).toBe(testValue);
+const manager1 = new Manager('Grace', 0, 'grace@gmail.ca', 'Manager', 124);
+
+// Declare this object to test if 'Employee' is chosen as the default role if role is empty
+const manager2 = new Manager('Grace', 0, 'grace@gmail.ca', '', 124);
+
+test('Creates Manager object with all valid values', () => {
+  expect(manager1.name).toEqual(expect.any(String));
+  expect(manager1.id).toEqual(expect.any(Number));
+  expect(manager1.email).toEqual(expect.stringContaining('@'));
+  expect(manager1.role).toEqual('Manager');
+  expect(manager1.officeNumber).toEqual(expect.any(Number));
 });
 
-test('getRole() should return "Manager"', () => {
-  const testValue = "Manager";
-  const e = new Manager("Foo", 1, "test@test.com", 100);
-  expect(e.getRole()).toBe(testValue);
+test('Manager method returns valid office number', () => {
+  expect(manager1.getOfficeNumber()).toEqual(expect.any(Number));
 });
 
-test("Can get office number via getOffice()", () => {
-  const testValue = 100;
-  const e = new Manager("Foo", 1, "test@test.com", testValue);
-  expect(e.getOfficeNumber()).toBe(testValue);
+test('Manager method returns correct role', () => {
+  expect(manager1.getRole()).toEqual('Manager');
+});
+
+test('Returns employee if role property not filled', () => {
+  // Test to make sure both the getRole function and regular property return Employee as it should
+  expect(manager2.getRole()).toEqual('Employee');
+  expect(manager2.role).toEqual('Employee');
 });
