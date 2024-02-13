@@ -84,7 +84,10 @@ Check out the [repository](https://github.com/fishmon/TeamManagerGenerator) for 
 
 ## Video Demo
 
-Watch a demo of the Team Builder application [here](<link-to-demo>).
+Watch a vide of the Team Builder application [here](https://drive.google.com/file/d/1Dsh4tLJHCVa4WypPb6u7lhgpyNUPy8Bo/view?usp=sharing), or the gif file version bellow.
+
+![Gif](./dist/images/demo.gif)
+
 
 ## Contact Me
 
